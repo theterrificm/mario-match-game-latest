@@ -1,0 +1,176 @@
+body {
+    padding: 0;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    background: repeating-linear-gradient(-55deg, #f2eef5 1px, #e68a96 10px, #f2eef5 10px, #a0b9d8 20px);
+    /* background: repeating-linear-gradient(-55deg, #f1f1f5 1px, #da2b4d 10px, #f1f1f5 10px, #6088be 20px); */
+  }
+  
+  header {
+    font-family: "assets/font/super mario font.woff", sans-serif;
+    font-size: 7vh;
+    font-weight: bold;
+    font-style: italic;
+    font-variant: small-caps;
+    background-color: rgba(48, 0, 112, 0.971);
+    color: white;
+    border-radius: 5px;
+    border: 10px solid black;
+    border-style: ridge;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 10px 10px 10px;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    min-width: 735px;
+    width: 735px;
+  }
+  
+  .board {
+    background-color: rgba(48, 0, 112, 0.971);
+    border: 10px solid black;
+    border-style: ridge;
+    grid-template-columns:repeat(6, 1fr);
+    grid-template-rows:repeat(3, auto);
+    display: grid;
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+    max-width: 735px;
+    min-width: 735px;
+    row-gap: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 450px;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: repeating-linear-gradient(-55deg, #f2eef5 1px, #e68a96 10px, #f2eef5 10px, #a0b9d8 20px);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .disappear{
+    animation: vanish 1s forwards;
+  }
+  @keyframes vanish {
+    100%{
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  
+  .classic {
+    padding: 10px;
+    font-weight: bold;
+    border: 10px solid black;
+    justify-content: center;
+    font-family: "assets/font/super mario font.woff", sans-serif;
+    font-size: 3vw;
+    border-style:ridge;
+    cursor: pointer;
+    background-color: rgb(1, 1, 226);
+    color: white;
+    margin: 10px;
+    min-width: 150px;
+    text-align: center;
+    margin-top: 10px;
+  } 
+  
+  .playins {
+    font-family: "assets/font/super mario font.woff", sans-serif;
+    font-size: 3vw;
+    font-weight:bold;
+    font-variant:small-caps; 
+    background-color: rgba(48, 0, 112, 0.971);
+    color: white;
+    border-radius: 5px;
+    border: 10px solid black;
+    border-style:ridge;
+    display: flex;
+    justify-content: center;
+    margin:auto;
+    margin-bottom: 15px;
+    padding: 20px;
+    margin-top: 0px;
+  }
+  
+  .reset {
+    margin: auto;
+    padding: 10px;
+    font-weight: bold;
+    border: 10px solid black;
+    justify-content: center;
+    font-family: "assets/font/super mario font.woff", sans-serif;
+    font-size: 20px;
+    background-color: rgba(48, 0, 112, 0.971);
+    color: white;
+    border-style:ridge;
+    margin-bottom: 10px;
+    cursor: pointer;
+    min-width:max-content;
+    max-width: fit-content;
+  } 
+  
+ /*  .winmsg {
+    font-family: "assets/font/super mario font.woff", sans-serif;
+    font-size: 35px;
+    font-weight:bold;
+    font-variant:small-caps; 
+    background-color: rgba(48, 0, 112, 0.971);
+    color: white;
+    border-radius: 5px;
+    border: 10px solid black;
+    border-style:ridge;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-right: 20px;
+    min-width:max-content;
+    min-height:max-content;
+    display: flex;
+    justify-content: center;
+    margin:auto;
+    position: fixed;
+    margin-bottom: 200px;
+  } */
+  
+  /* .lossmsg {
+    font-family: "assets/font/super mario font.woff", sans-serif;
+    font-size: 35px;
+    font-weight:bold;
+    font-variant:small-caps; 
+    background-color: rgba(48, 0, 112, 0.971);
+    color: white;
+    border-radius: 5px;
+    border: 10px solid black;
+    border-style:ridge;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-right: 20px;
+    min-width:max-content;
+    min-height:max-content;
+    display: flex;
+    justify-content: center;
+    margin:auto;
+    position: fixed;
+    margin-bottom: 200px;
+  } */
