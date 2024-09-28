@@ -1,29 +1,28 @@
 console.log("Super Mario Match Game");
 
 
-/*-------------------------------- Constants --------------------------------*/
+// ------------------ Constants ------------------
 const board = ["flower", "flower", "flower", "flower", "mushroom", "mushroom", "mushroom", "mushroom", "star", "star", "star", "star", "tencoin", "tencoin", "twentycoin", "twentycoin", "chest", "chest"]
+let currentDeck;
+let match;
+let miss;
+let firstCardPicked = null;
+let secondCardPicked = null;
+let isFlipping = false;  // New flag to disable input during flip checks
 
-let currentDeck
-let match
-let miss
-let firstCardPicked = null
-let secondCardPicked = null
-let isFlipping = false 
+// ------------------ Cached Element References ------------------
+const classicButton = document.getElementsByClassName("classic");
+console.log(classicButton);
+const resetButton = document.getElementsByClassName("reset");
+console.log(resetButton);
+const cardEls = document.querySelectorAll(".facedown");
 
-/*------------------------ Cached Element References ------------------------*/
-const classicButton = document.getElementsByClassName("classic")
-
-const resetButton = document.getElementsByClassName("reset")
-
-const cardEls = document.querySelectorAll(".facedown")
-
-/*-------------------------------- Functions --------------------------------*/
+// ------------------ Functions ------------------
 
 // Shuffle the board and initialize the game
 function init() {
     currentDeck = shuffle(board);
-    console.log(currentDeck);
+    console.log("After shuffling " + currentDeck);
 }
 
 // Shuffle the array using Fisher-Yates algorithm
@@ -89,15 +88,16 @@ function resetPicks() {
     isFlipping = false;  // Enable interaction after flipping
 }
 
-// Loader
-var loader = document.querySelector(".loader")
+// ------------------ Loader functionality ------------------
+var loader = document.querySelector(".loader");
 function vanish() {
-  loader.classList.add("disappear")
+    loader.classList.add("disappear");
 }
 
-/*----------------------------- Event Listeners -----------------------------*/
-document.querySelector(".classic").addEventListener("click", vanish)
-
+// Adding event listeners to buttons
+document.querySelector(".classic").addEventListener("click", vanish);
 cardEls.forEach((cardEl, idx) => {
-  cardEl.addEventListener("click", handleClick)
-})
+    cardEl.addEventListener("click", handleClick);
+});
+
+init()
