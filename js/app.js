@@ -7,8 +7,8 @@ const board = ["flower", "flower", "flower", "flower", "mushroom", "mushroom", "
 let currentDeck
 let match
 let miss
-let firstCardPicked = ""
-let secondCardPicked = ""
+let firstCardPicked = null
+let secondCardPicked = null
 let isFlipping = false 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -19,63 +19,74 @@ const resetButton = document.getElementsByClassName("reset")
 const cardEls = document.querySelectorAll(".facedown")
 
 /*-------------------------------- Functions --------------------------------*/
-// Shuffle board and start game
+
+// Shuffle the board and initialize the game
 function init() {
-  currentDeck = shuffle(board)
-  console.log(currentDeck)
+    currentDeck = shuffle(board);
+    console.log(currentDeck);
 }
 
-// Fisher-Yates shuffle algorithm
+// Shuffle the array using Fisher-Yates algorithm
 function shuffle(array) {
-  let oldElement
-  for (let i = array.length - 1; i >= 0; i--) {
-      let rand = Math.floor(Math.random() * (i + 1))
-      oldElement = array[i]
-      array[i] = array[rand]
-      array[rand] = oldElement
-  }
-  return array
-}
-
-function handleClick(evt) {
-  if (isFlipping) 
-    return  
-  const cardIdx = parseInt(evt.target.id)
-  if (cardEls[cardIdx].classList.contains("revealed")) 
-    return 
-  revealCard(cardIdx)
-  if (firstCardPicked === "") {
-      firstCardPicked = cardIdx
-  } else {
-      secondCardPicked = cardIdx
-      isFlipping = true 
-  if (currentDeck[firstCardPicked] === currentDeck[secondCardPicked]) {
-      cardEls[firstCardPicked].classList.add("matched")
-      cardEls[secondCardPicked].classList.add("matched")
-  resetPicks()
-  } else {
-  setTimeout(() => {
-    hideCard(firstCardPicked)
-    hideCard(secondCardPicked)
-      resetPicks()
-        }, 2000) 
+    let oldElement;
+    for (let i = array.length - 1; i >= 0; i--) {
+        let rand = Math.floor(Math.random() * (i + 1));
+        oldElement = array[i];
+        array[i] = array[rand];
+        array[rand] = oldElement;
     }
-  }
+    return array;
 }
+
+// Handle the card click event
+function handleClick(evt) {
+    if (isFlipping) return;  // Prevent interaction during flip check
+    const cardIdx = parseInt(evt.target.id);
+    console.log(cardIdx);
+    
+    if (cardEls[cardIdx].classList.contains("revealed")) return;  // Ignore clicks on revealed cards
+
+    revealCard(cardIdx);
+
+    if (firstCardPicked === null) {
+        firstCardPicked = cardIdx;
+    } else {
+        secondCardPicked = cardIdx;
+        isFlipping = true;  // Block further clicks
+
+        if (currentDeck[firstCardPicked] === currentDeck[secondCardPicked]) {
+            console.log("match");
+            cardEls[firstCardPicked].classList.add("matched");
+            cardEls[secondCardPicked].classList.add("matched");
+            resetPicks();
+        } else {
+            console.log("miss");
+            setTimeout(() => {
+                hideCard(firstCardPicked);
+                hideCard(secondCardPicked);
+                resetPicks();
+            }, 1000);  // Add delay before flipping back cards
+        }
+    }
+}
+
+// Reveal a card
 function revealCard(idx) {
-  cardEls[idx].classList.remove("facedown")
-  cardEls[idx].classList.add("revealed")
+    cardEls[idx].classList.remove("facedown");
+    cardEls[idx].classList.add("revealed");
 }
 
+// Hide a card (flip back)
 function hideCard(idx) {
-  cardEls[idx].classList.remove("revealed")
-  cardEls[idx].classList.add("facedown")
+    cardEls[idx].classList.remove("revealed");
+    cardEls[idx].classList.add("facedown");
 }
 
+// Reset the selected cards after each move
 function resetPicks() {
-  firstCardPicked = ""
-  secondCardPicked = ""
-  isFlipping = false  
+    firstCardPicked = null;
+    secondCardPicked = null;
+    isFlipping = false;  // Enable interaction after flipping
 }
 
 // Loader
@@ -83,9 +94,6 @@ var loader = document.querySelector(".loader")
 function vanish() {
   loader.classList.add("disappear")
 }
-
-// document.querySelector(".lossmsg").innerHTML = YOU LOST!!! 😢
-
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.querySelector(".classic").addEventListener("click", vanish)
