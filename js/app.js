@@ -54,12 +54,14 @@ function handleClick(evt) {
         isFlipping = true;  // Block further clicks
 
         if (currentDeck[firstCardPicked] === currentDeck[secondCardPicked]) {
-            console.log("match");
+            // console.log("match");
+            alert("match");
             cardEls[firstCardPicked].classList.add("matched");
             cardEls[secondCardPicked].classList.add("matched");
             resetPicks();
         } else {
-            console.log("miss");
+            // console.log("miss");
+            alert("miss");
             setTimeout(() => {
                 hideCard(firstCardPicked);
                 hideCard(secondCardPicked);
