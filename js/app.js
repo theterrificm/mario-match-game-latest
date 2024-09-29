@@ -9,7 +9,9 @@ let miss;
 let firstCardPicked = null;
 let secondCardPicked = null;
 let isFlipping = true;  // New flag to disable input during flip checks
-let timeLeft = 30 // Countdown timer value
+let timeLeft = 10 // Countdown timer value
+let win = 0
+let loss = 0 
 
 // ------------------ Cached Element References ------------------
 const classicButton = document.getElementsByClassName("classic");
@@ -18,6 +20,8 @@ const resetButton = document.getElementsByClassName("reset");
 console.log(resetButton);
 const cardEls = document.querySelectorAll(".facedown");
 const playAgainBtn = document.getElementById('play-again')
+const winTotal = document.getElementById('win-count')
+const lossTotal = document.getElementById('loss-count')
 
 // ------------------ Functions ------------------
 
@@ -62,12 +66,14 @@ function handleClick(evt) {
             console.log("match");
             cardEls[firstCardPicked].classList.add("matched");
             cardEls[secondCardPicked].classList.add("matched");
+            win++
             resetPicks();
         } else {
             console.log("miss");
             setTimeout(() => {
                 hideCard(firstCardPicked);
                 hideCard(secondCardPicked);
+                loss++
                 resetPicks();
             }, 1000);  // Add delay before flipping back cards
         }
@@ -114,7 +120,7 @@ cardEls.forEach((cardEl, idx) => {
 
 
 
-function countdownTimer (timeLeft = 30) {
+function countdownTimer (timeLeft = 10) {
     const intervalID = setInterval(() => {
         // Decrease the time left by 1 second
         timeLeft--;
@@ -133,6 +139,12 @@ function countdownTimer (timeLeft = 30) {
 
 //Function that will run after the countdown completes
 function endGame(){
+    winTotal.innerText = win
+    lossTotal.innerText = loss
+    const winLossInfo = document.getElementsByClassName('count-results')
+    for (let i=0; i< winLossInfo.length; i++){
+        winLossInfo[i].style.display = "block"
+    }
     playAgainBtn.style.display = "block"
     // document.getElementById('countdown').style.display = "none"
     isFlipping = false
@@ -141,6 +153,15 @@ function endGame(){
 
 function resetGame(){
     playAgainBtn.style.display = "none"
+    win = 0
+    loss = 0
+    winTotal.innerText = win
+    lossTotal.innerText = loss
+    console.log('win or loss in reset func' + win + loss)
+    const winLossInfo = document.getElementsByClassName('count-results')
+    for (let i=0; i< winLossInfo.length; i++){
+        winLossInfo[i].style.display = "none"
+    }
     countdownTimer()
     const revealedCards = document.getElementsByClassName('revealed')
     const revCardsArray = Array.from(revealedCards)

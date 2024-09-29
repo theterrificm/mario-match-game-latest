@@ -129,7 +129,7 @@ body {
     max-width: fit-content;
   } 
   
- /*  .winmsg {
+  .winmsg {
     font-family: "assets/font/super mario font.woff", sans-serif;
     font-size: 35px;
     font-weight:bold;
@@ -150,9 +150,9 @@ body {
     margin:auto;
     position: fixed;
     margin-bottom: 200px;
-  } */
+  }
   
-  /* .lossmsg {
+  .lossmsg {
     font-family: "assets/font/super mario font.woff", sans-serif;
     font-size: 35px;
     font-weight:bold;
@@ -173,12 +173,18 @@ body {
     margin:auto;
     position: fixed;
     margin-bottom: 200px;
-  } */
+  }
 
   .endGame{
     text-align: center;
   }
 
   #play-again{
+    display: none;
+  }
+  .count-results{
+    display: none;
+  }
+  .hide-section{
     display: none;
   }
