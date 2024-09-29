@@ -9,7 +9,7 @@ let miss;
 let firstCardPicked = null;
 let secondCardPicked = null;
 let isFlipping = true;  // New flag to disable input during flip checks
-let timeLeft = 10 // Countdown timer value
+let timeLeft = 30 // Countdown timer value
 let win = 0
 let loss = 0 
 
@@ -120,7 +120,7 @@ cardEls.forEach((cardEl, idx) => {
 
 
 
-function countdownTimer (timeLeft = 10) {
+function countdownTimer (timeLeft = 30) {
     const intervalID = setInterval(() => {
         // Decrease the time left by 1 second
         timeLeft--;
